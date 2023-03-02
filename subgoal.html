@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Follower Goal Tracker</title>
+  </head>
+  <body>
+    <h1>Follower Goal Tracker</h1>
+    <p>Current Followers: <span id="current-followers">0</span></p>
+    <p>Goal: <span id="goal-followers">100</span></p>
+    <button onclick="updateFollowers()">Update Followers</button>
+
+    <script>
+      // Set the API endpoint
+      const apiEndpoint = "https://kick.com/api/v1/channels/theatomnamedadam";
+
+      // Function to update the current follower count
+      async function updateFollowers() {
+        // Call the API to get the current follower count
+        const response = await fetch(apiEndpoint);
+        const data = await response.json();
+
+        // Update the follower count displayed on the page
+        const currentFollowers = document.getElementById("current-followers");
+        currentFollowers.innerHTML = data.followers;
+
+        // Update the goal follower count displayed on the page
+        const goalFollowers = document.getElementById("goal-followers");
+        goalFollowers.innerHTML = data.goal;
+      }
+    </script>
+  </body>
+</html>
